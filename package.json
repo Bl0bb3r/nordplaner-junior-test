@@ -1,0 +1,22 @@
+{
+  "name": "nordplaner-junior-test",
+  "version": "1.0.0",
+  "description": "Junior Fullstack software developer test @Nordplaner - contents regards the individual assignment - in this case a shopping list. Only requirements are use SPA frontend framework/library, backend must be node.js or Ruby",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Andreas Blaabjerg",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.2.1",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
