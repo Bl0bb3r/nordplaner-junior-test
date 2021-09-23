@@ -16,12 +16,12 @@ const columns: GridColDef[] = [
   {
     field: "quantity",
     headerName: "Quantity",
-    width: 50,
+    width: 150,
   },
   {
     field: "date",
     headerName: "Date Added",
-    width: 150,
+    width: 475,
   },
 ];
 

@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 //create mongodb schema
 const ItemSchema = new Schema({
+  id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -14,6 +19,7 @@ const ItemSchema = new Schema({
   },
   date: {
     type: Date,
+    required: true,
     default: Date.now,
   },
 });

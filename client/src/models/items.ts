@@ -1,12 +1,12 @@
 import { createModel } from "@rematch/core";
 import { RootModel } from ".";
 import { Item } from "../pages/Shopping/Item.model";
-import axios from "axios";
 import React from "react";
+import dummyData from "../pages/Shopping/item.data";
 
 // fetchItems needs implementation for fetching database Items thus saving in state.
 function fetchItems() {
-  return [];
+  return dummyData;
 }
 
 export const items = createModel<RootModel>()({
