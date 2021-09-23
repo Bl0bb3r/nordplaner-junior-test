@@ -8,7 +8,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <Typography variant="h2">Welcome to Dashboard</Typography>
+      <Typography variant="h2" align="center">
+        Welcome to Dashboard
+      </Typography>
       <Button
         title={"Go to ShoppingList"}
         onClick={() => history.push("/shoppinglist")}

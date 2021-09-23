@@ -1,14 +1,64 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { DataGrid, GridColDef } from "@material-ui/data-grid";
 import Button from "../../components/Button";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { capitalize, Typography } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, RootDispatch } from "../../store";
+
+const columns: GridColDef[] = [
+  {
+    field: "name",
+    headerName: "Item",
+    width: 150,
+    valueFormatter: (params) => capitalize(params.row?.name),
+  },
+  {
+    field: "quantity",
+    headerName: "Quantity",
+    width: 50,
+  },
+  {
+    field: "date",
+    headerName: "Date Added",
+    width: 150,
+  },
+];
 
 const ShoppingList: React.FC = () => {
-  //const history = useHistory();
+  const dbData = useSelector((state: RootState) => state.items);
+  const dispatch = useDispatch<RootDispatch>();
+
+  useEffect(() => {
+    dispatch.items.loadAsync();
+  }, [dispatch.items]);
 
   return (
     <div className="shoppinglist-wrapper">
-      <Typography variant="h2">Here is your Shopping List</Typography>
+      <Typography variant="h2" align="center">
+        This is your Shopping List:
+      </Typography>
+      <DataGrid
+        rows={dbData}
+        columns={columns}
+        pageSize={5}
+        autoHeight={true}
+        autoPageSize={true}
+        rowsPerPageOptions={[25]}
+        checkboxSelection
+        disableSelectionOnClick
+      />
+      <Button
+        title={"Add Item to ShoppingList"}
+        onClick={() => {
+          // const name = prompt("Enter Item here:");
+          // if (name) {
+          //   this.setState((state: { items: any }) => ({
+          //     items: [...state.items, { name }],
+          //   }));
+          // }
+        }}
+      ></Button>
     </div>
   );
 };
