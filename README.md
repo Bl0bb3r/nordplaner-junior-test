@@ -13,8 +13,7 @@ Anyways
 
 I set up some scripts which should make the running process easier - as soon as repo cloned, running "npm run dev" should install and run application.
 If this is not the case and npm installs have to be made, inside the normal project scope eg. "~/Documents/Andreas/Repos/nordplaner-junior-test" run "npm i" and afterwards use 
-"cd client/" and do an "npm i" here aswell. After this is done. Simply running the script "npm run dev" deploys a session running both backend and front end. Server is hosted
-on port localhost:5000 and front end is hosted on localhost:3000.
+"cd client/" and do an "npm i" here aswell. After this is done. Simply running the script "npm run dev" deploys a session running both backend and front end (OBS, if this is not desired, the to single start scripts are still there. To see theese look in package.json under scripts -> "npm run server" runs server and "npm run client" runs client.) Server is hosted on port localhost:5000 and front end is hosted on localhost:3000.
 
 I realize it was a requirement to split the backend and the frontend and that would still be the correct way. It would be solved by inserting the backend into its own folder
 just like we have the client folder for the frontend.
