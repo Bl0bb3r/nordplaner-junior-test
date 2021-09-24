@@ -74,7 +74,7 @@ const MainContainer: React.FC = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Daily Notices
+            Daily Notices Assistant
           </Typography>
         </Toolbar>
       </AppBar>

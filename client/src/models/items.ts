@@ -1,13 +1,20 @@
 import { createModel } from "@rematch/core";
 import { RootModel } from ".";
 import { Item } from "../pages/Shopping/Item.model";
-import React from "react";
-import dummyData from "../pages/Shopping/item.data";
+import axios from "axios";
 
-// fetchItems needs implementation for fetching database Items thus saving in state.
-function fetchItems() {
-  return dummyData;
-}
+const fetchItems = async () => {
+  const response = await axios.get("http://localhost:5000/api/shoppinglist");
+  return response.data;
+};
+
+const addItemInDb = async (name: string, quantity: number) => {
+  await axios.post("http://localhost:5000/api/shoppinglist", {
+    name,
+    quantity,
+    date: Math.round(new Date().getTime() / 1000),
+  });
+};
 
 export const items = createModel<RootModel>()({
   state: [] as ReadonlyArray<Item>,
@@ -15,9 +22,13 @@ export const items = createModel<RootModel>()({
     loaded: (state, payload: ReadonlyArray<Item>) => payload,
   },
   effects: (dispatch) => ({
-    async loadAsync() {
-      const payload = fetchItems();
-      dispatch.items.loaded(payload);
+    loadAsync: async () => {
+      const payload = await fetchItems();
+      dispatch.items.loaded(payload.map((r: any) => ({ ...r, id: r._id })));
+    },
+    addItem: async (payload: { name: string; quantity: number }) => {
+      await addItemInDb(payload.name, payload.quantity);
+      dispatch.items.loadAsync();
     },
   }),
 });

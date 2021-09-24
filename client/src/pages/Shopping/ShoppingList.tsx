@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { DataGrid, GridColDef } from "@material-ui/data-grid";
 import Button from "../../components/Button";
-import { useHistory } from "react-router-dom";
 import { capitalize, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, RootDispatch } from "../../store";
@@ -22,6 +21,8 @@ const columns: GridColDef[] = [
     field: "date",
     headerName: "Date Added",
     width: 475,
+    valueFormatter: (params) =>
+      new Date(params.row?.date * 1000).toLocaleString(),
   },
 ];
 
@@ -31,32 +32,31 @@ const ShoppingList: React.FC = () => {
 
   useEffect(() => {
     dispatch.items.loadAsync();
-  }, [dispatch.items]);
+  }, [dispatch]);
+
+  console.log(dbData);
 
   return (
     <div className="shoppinglist-wrapper">
       <Typography variant="h2" align="center">
         This is your Shopping List:
       </Typography>
-      <DataGrid
-        rows={dbData}
-        columns={columns}
-        pageSize={5}
-        autoHeight={true}
-        autoPageSize={true}
-        rowsPerPageOptions={[25]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
+      {dbData?.length > 0 && (
+        <DataGrid
+          rows={dbData}
+          columns={columns}
+          pageSize={10}
+          autoHeight={true}
+          autoPageSize={true}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      )}
       <Button
         title={"Add Item to ShoppingList"}
         onClick={() => {
-          // const name = prompt("Enter Item here:");
-          // if (name) {
-          //   this.setState((state: { items: any }) => ({
-          //     items: [...state.items, { name }],
-          //   }));
-          // }
+          const name = prompt("Enter Item here:") as string;
+          dispatch.items.addItem({ name, quantity: 1 });
         }}
       ></Button>
     </div>

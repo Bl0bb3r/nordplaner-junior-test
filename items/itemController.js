@@ -18,13 +18,13 @@ const createItem = async (req, res) => {
     quantity: req.body.quantity,
     date: req.body.date,
   });
-  console.log(req.body.date);
+  console.log("CREATE ITEM: " + req.body.name);
   try {
     await newItem.save();
-    res.send({ message: "Rating recieved. Ok" });
+    res.send({ message: "Item inserted" });
     res.status(201);
-  } catch {
-    res.send({ message: "Failed to create item" });
+  } catch (err) {
+    res.send({ message: "Failed to create item: " + err.message });
     res.status(400);
   }
 };
