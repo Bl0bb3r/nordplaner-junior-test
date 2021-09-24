@@ -41,6 +41,7 @@ const ShoppingList: React.FC = () => {
       <Typography variant="h2" align="center">
         This is your Shopping List:
       </Typography>
+      {/* hack here that renders the datagrid if theres data in it. It was the case before this, that the grid sometimes would render before recieving data from DB */}
       {dbData?.length > 0 && (
         <DataGrid
           rows={dbData}

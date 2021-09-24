@@ -4,7 +4,9 @@ const Item = require("./item");
 const fetchAllItems = async (req, res) => {
   try {
     const items = await Item.find()
-      .sort({ date: -1 })
+      //sort function can be -1 for descending items so newest input is top item or +1 for recieving the inputs with the oldes creation date first.
+      // had -1 here until I realized I prefer the first items i write on my shopping list to be the top ones :p
+      .sort({ date: +1 })
       .then((items) => res.json(items));
     res.status(200).json(items);
   } catch {
