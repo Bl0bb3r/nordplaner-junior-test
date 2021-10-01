@@ -26,7 +26,7 @@ There are probably some things I wanted to point out which I've most likely forg
 
 * The delete feature was not implemented. It was intended that in combination with mui datagrid checkboxes removal of one or more items should be implemented.
 * Dark mode feature was not implemented. I stopped my endeavours here as I realized, I should probably continue with the actual assignment. However it should be very simple to add.
-* I just forgot that i forgot to format the time from number to our specific time format. This could be done using a framework that handles and reformats Date objects or unic time numbers. There is also a built in formatter for this, but if I remember correctly that can not format it to 24 hour mode.
+* I just forgot that i forgot to format the time from number to our specific time format. This could be done using a framework that handles and reformats Date objects or unix time numbers. There is also a built in formatter for this, but if I remember correctly that can not format it to 24 hour mode.
 
 Enjoy and cheers,
 Andreas
